@@ -1,0 +1,24 @@
+// Here you can add other styles
+@media (max-width: 991px) {
+  .app-header.navbar {
+    position: fixed !important;
+    z-index: 1020;
+    width: 100%;
+    text-align: center;
+    background-color: #20a8d8;
+  }
+}
+
+.amoeba_row{
+  width: 50%;
+}
+
+.amoeba_btn{
+  width: 100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.Select{
+  width: 100%;
+}
