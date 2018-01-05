@@ -12,7 +12,8 @@ routes:
  
  Amoeba Algorithm:
  
-``` populationGrowth(length) {
+```
+populationGrowth(length) {
         let adults = this.state.adults;
         let kids = this.state.kids;
         for (let i = 0; i <= length; i++) {
@@ -31,7 +32,8 @@ routes:
         this.setState({
             adults, kids
         });
-    }```
+    }
+    ```
     
   Front End assumption: Text/UI did not change much.
   
