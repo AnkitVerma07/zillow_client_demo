@@ -1,7 +1,7 @@
 
 const ENV = {
   develop:{
-    baseURL: '',
+    baseURL: 'http://ec2-34-228-27-54.compute-1.amazonaws.com',
   },
   stage:{
     baseURL: '',
@@ -14,7 +14,7 @@ const ENV = {
   }
 };
 
-export const host = ENV.local.baseURL;
+export const host = ENV.develop.baseURL;
 
 export const client = {
   id: "",
