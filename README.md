@@ -12,7 +12,7 @@ routes:
  
  Amoeba Algorithm:
  
-```
+```javascript
 populationGrowth(length) {
         let adults = this.state.adults;
         let kids = this.state.kids;
@@ -33,7 +33,7 @@ populationGrowth(length) {
             adults, kids
         });
     }
-    ```
+```
     
   Front End assumption: Text/UI did not change much.
   
