@@ -31,7 +31,7 @@ routes:
         this.setState({
             adults, kids
         });
-    } ```
+    }```
     
   Front End assumption: Text/UI did not change much.
   
