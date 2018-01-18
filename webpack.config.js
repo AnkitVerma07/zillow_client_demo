@@ -3,18 +3,18 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
+const CompressionPlugin = require("compression-webpack-plugin");
 const extractCSS = new ExtractTextPlugin('[name].fonts.css');
 const extractSCSS = new ExtractTextPlugin('[name].styles.css');
 
 const BUILD_DIR = path.resolve(__dirname, 'build');
 const SRC_DIR = path.resolve(__dirname, 'src');
 
-console.log('BUILD_DIR', BUILD_DIR);
-console.log('SRC_DIR', SRC_DIR);
+// console.log('BUILD_DIR', BUILD_DIR);
+// console.log('SRC_DIR', SRC_DIR);
 
 module.exports = {
-  devtool: 'eval-source-map',
+  //devtool: 'eval-source-map',
   entry: {
     index: [SRC_DIR + '/index.js', require.resolve('whatwg-fetch')]
 	},
@@ -25,14 +25,14 @@ module.exports = {
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
   watch: !!process.env.WATCH,
-  devServer: {
-    contentBase: BUILD_DIR,
-    host: 'localhost',
-    port: 3333,
-    compress: true,
-    hot: true,
-    open: true
-  },
+  // devServer: {
+  //   contentBase: BUILD_DIR,
+  //   host: 'localhost',
+  //   port: 3333,
+  //   compress: true,
+  //   hot: true,
+  //   open: true
+  // },
   module: {
     rules: [
       {
@@ -93,10 +93,29 @@ module.exports = {
       }]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: false,
+      mangle: true,
+      compress: {
+        warnings: false, // Suppress uglification warnings
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        screw_ie8: true
+      },
+      output: {
+        comments: false,
+      },
+      exclude: [/\.min\.js$/gi] // skip pre-minified libs
+    }),
+    new webpack.NoEmitOnErrorsPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   sourceMap: true
+    // }),
     new webpack.NamedModulesPlugin(),
     extractCSS,
     extractSCSS,

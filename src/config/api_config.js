@@ -1,7 +1,7 @@
 
 const ENV = {
   develop:{
-    baseURL: 'http://ec2-34-228-27-54.compute-1.amazonaws.com',
+    baseURL: 'http://ec2-54-91-95-188.compute-1.amazonaws.com',
   },
   stage:{
     baseURL: '',
